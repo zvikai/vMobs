@@ -4,21 +4,13 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
         >
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World, MyActivity"
-            />
 
-    <fragment android:name="com.example.testApp.Fregment1"
-              android:id="@+id/fragment_1"
-              android:layout_width="match_parent"
-              android:layout_height="254dp" tools:layout="@layout/fragment1"/>
-
-    <fragment android:name="com.example.testApp.Fregment2"
-              android:id="@+id/fragment_2"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent" tools:layout="@layout/fragment2"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:onClick="moveToAlerts"
+        android:text="@string/alerts_title" />
 
     <!--<LinearLayout-->
             <!--android:orientation="horizontal"-->
