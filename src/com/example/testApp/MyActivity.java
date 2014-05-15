@@ -6,6 +6,9 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import com.example.testApp.service.AlertService;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
 public class MyActivity extends Activity {
     /**
@@ -27,5 +30,10 @@ public class MyActivity extends Activity {
                 view.loadUrl("http://www.gmail.com");
             }
         });
+
+        AlertService service = new AlertService();
+        service.execute("https://ajax.googleapis.com/ajax/" +
+                "services/search/web?v=1.0&q={query}");
+
     }
 }
