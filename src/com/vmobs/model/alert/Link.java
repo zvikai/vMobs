@@ -1,7 +1,10 @@
+
 package com.vmobs.model.alert;
 
+import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 
+@Generated("org.jsonschema2pojo")
 public class Link {
 
     @Expose

@@ -13,8 +13,8 @@ public class AlertConverter {
     public static List<Alert> convert(AlertsDto alert){
         ArrayList<Alert> listItems = new ArrayList<Alert>();
         if(alert != null && alert.getAlerts() != null && !alert.getAlerts().isEmpty()){
-            for (AlertDto alertDto : alert.getAlerts()){
-                listItems.add(convert(alertDto));
+            for (AlertDto alertsDto : alert.getAlerts()){
+                listItems.add(convert(alertsDto));
             }
         } else {
             for (int i = 0; i < 17; ++i) {
@@ -24,8 +24,8 @@ public class AlertConverter {
         return listItems;
     }
 
-    public static Alert convert(AlertDto alertDto){
-        return new Alert(alertDto.getProblemName(), alertDto.getAlertLevel(),convertLevel(alertDto.getAlertLevel()));
+    public static Alert convert(AlertDto alertsDto){
+        return new Alert(alertsDto.getProblemName(), alertsDto.getAlertLevel(),convertLevel(alertsDto.getAlertLevel()));
     }
 
     public static int convertLevel(String level){

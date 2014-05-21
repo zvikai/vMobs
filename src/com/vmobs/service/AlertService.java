@@ -22,8 +22,8 @@ public class AlertService extends VcopsService<String, String, AlertsDto> {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
 
-        ResponseEntity<AlertsDto> result = restTemplate.exchange(baseUrl+"?resourceId={resourceId}",
-                HttpMethod.GET, createRequestEntity(), AlertsDto.class, params[0]);
+        ResponseEntity<AlertsDto> result = restTemplate.exchange(baseUrl + "?showSelfAlerts=true&impactBadge=&resourceId=&start=0&limit=50&currentComponentInfo=TODO&page=0&pageSize=100",
+                HttpMethod.GET, createRequestEntity(), AlertsDto.class);
         return  result.getBody();
     }
 

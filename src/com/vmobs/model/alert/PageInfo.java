@@ -1,10 +1,9 @@
+
 package com.vmobs.model.alert;
 
 import com.google.gson.annotations.Expose;
 
-/**
- * Created by liorm on 20/05/2014.
- */
+
 public class PageInfo {
 
     @Expose

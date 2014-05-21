@@ -1,9 +1,9 @@
+
 package com.vmobs.model.alert;
 
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
-
 
 public class AlertsDto {
 
@@ -39,4 +39,3 @@ public class AlertsDto {
     }
 
 }
-
