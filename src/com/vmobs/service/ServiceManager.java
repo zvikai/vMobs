@@ -1,19 +1,24 @@
 package com.vmobs.service;
 
-import android.app.ListActivity;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
+import com.vmobs.model.alert.AlertsDto;
 
 import javax.net.ssl.*;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.text.MessageFormat;
 
 /**
  * Created by liorm on 20/05/2014.
  */
 public class ServiceManager {
 
-    private static final String USER = "user";
-    private static final String PASS = "Admin123!";
+    private static final String BASE = "https://{0}/suite-api/api/";
+    private String baseUrl = "https://{0}/suite-api/api/";
+    private String user = "admin";
+    private String pass = "Admin123!";
+    private String ip = "10.23.203.6";
 
     static {
         TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
@@ -44,15 +49,16 @@ public class ServiceManager {
         });
     }
 
-    private ListActivity listActivity;
-
-    public ServiceManager(ListActivity listActivity) {
-        this.listActivity = listActivity;
+    public ServiceManager(String ip, String user, String pass) {
+//        this.ip = ip;
+//        this.user = user;
+//        this.pass = pass;
+        baseUrl = MessageFormat.format(BASE, this.ip);
     }
 
-    public void getAlerts(){
-      AlertService alertService = new AlertService(listActivity, "https://10.23.203.6/suite-api/api/alerts",
-              USER, PASS);
+    public void getAlerts(VcopsDataAcceptor<AlertsDto> dataAcceptor){
+      AlertService alertService = new AlertService(dataAcceptor, baseUrl,
+              user, pass);
       alertService.execute("96ddab79-31fa-41ad-84ca-05aa99cc998a");
     }
 }

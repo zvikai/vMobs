@@ -1,7 +1,6 @@
 package com.vmobs.service;
 
-import android.app.ListActivity;
-import android.os.AsyncTask;
+import android.support.v4.app.ListFragment;
 import com.vmobs.model.alert.AlertConverter;
 import com.vmobs.model.alert.AlertsDto;
 import com.vmobs.alerts.AlertsListAdapter;
@@ -12,18 +11,10 @@ import org.springframework.web.client.RestTemplate;
 /**
  * Created by liorm on 15/05/2014.
  */
-public class AlertService extends AsyncTask<String, String, AlertsDto> {
+public class AlertService extends VcopsService<String, String, AlertsDto> {
 
-    private ListActivity listActivity;
-    private final String baseUrl;
-    private final String user;
-    private final String pass;
-
-    public AlertService(ListActivity listActivity, String baseUrl, String user, String pass) {
-        this.listActivity = listActivity;
-        this.baseUrl = baseUrl;
-        this.user = user;
-        this.pass = pass;
+    public AlertService(VcopsDataAcceptor<AlertsDto> dataAcceptor, String baseUrl, String user, String pass) {
+        super(dataAcceptor, baseUrl + "alerts", user, pass);
     }
 
     @Override
@@ -31,21 +22,13 @@ public class AlertService extends AsyncTask<String, String, AlertsDto> {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
 
-        ResponseEntity<AlertsDto> result = restTemplate.exchange("https://10.23.203.6/suite-api/api/alerts?{resourceId}",
+        ResponseEntity<AlertsDto> result = restTemplate.exchange(baseUrl+"?resourceId={resourceId}",
                 HttpMethod.GET, createRequestEntity(), AlertsDto.class, params[0]);
         return  result.getBody();
     }
 
     @Override
     protected void onPostExecute(AlertsDto alertsDto) {
-        listActivity.setListAdapter(new AlertsListAdapter(listActivity, AlertConverter.convert(alertsDto)));
-    }
-
-    private HttpEntity createRequestEntity(){
-        HttpAuthentication authHeader = new HttpBasicAuthentication(user, pass);
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.setAuthorization(authHeader);
-        HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
-        return requestEntity;
+        dataAcceptor.accept(alertsDto);
     }
 }

@@ -25,16 +25,16 @@ public class AlertConverter {
     }
 
     public static Alert convert(AlertDto alertDto){
-        return new Alert(alertDto.getType(), alertDto.getProblemName(),convertLevel(alertDto.getAlertLevel()));
+        return new Alert(alertDto.getProblemName(), alertDto.getAlertLevel(),convertLevel(alertDto.getAlertLevel()));
     }
 
     public static int convertLevel(String level){
         if(level != null){
             if (level.equals("CRITICAL")){
-                return 1;
+                return 5;
             }
         }
-        return 6;
+        return 1;
     }
 
 

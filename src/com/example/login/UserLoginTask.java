@@ -30,7 +30,7 @@ public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
 		try {
 			// Simulate network access.
-			Thread.sleep(2000);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			return false;
 		}

@@ -91,6 +91,8 @@ public class LoginActivity extends Activity {
 						attemptLogin();
 					}
 				});
+        mAuthTask = new UserLoginTask(this);
+        mAuthTask.execute((Void) null);
 	}
 
 	/**

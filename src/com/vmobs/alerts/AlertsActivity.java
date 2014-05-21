@@ -14,7 +14,7 @@ public class AlertsActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.alerts_activity);
-        ServiceManager SM = new ServiceManager(this);
+//        ServiceManager SM = new ServiceManager(this);
 
 		for (int i = 0; i < 20.; ++i) {
 			listItems.add(new Alert("Alert "+i, "This is a short description", i%6));
@@ -23,7 +23,7 @@ public class AlertsActivity extends ListActivity {
 	     setListAdapter(adapter);
 
         //get real alerts
-        SM.getAlerts();
+//        SM.getAlerts();
 	}
 
 	
