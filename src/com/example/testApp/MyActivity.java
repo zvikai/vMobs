@@ -1,39 +1,38 @@
 package com.example.testApp;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
-import com.example.testApp.service.AlertService;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.vmobs.alerts.AlertsActivity;
 
 public class MyActivity extends Activity {
-    /**
-     * Called when the activity is first created.
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+	ListView list;
+	ArrayList<String> listItems = new ArrayList<String>();
+	ArrayAdapter<String> adapter;
+	int clickCounter = 0;
 
-        final Button button = (Button) findViewById(R.id.button);
-        WebView view = (WebView)findViewById(R.id.webView);
-        view.getSettings().setJavaScriptEnabled(true);
-        view.setWebViewClient(new WebViewClient());
+	/**
+	 * Called when the activity is first created.
+	 */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+	}
+	
+	public void moveToAlerts(View view) {
+		 Intent intent = new Intent(this, AlertsActivity.class);
+		    startActivity(intent);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                WebView view = (WebView)findViewById(R.id.webView);
-                view.loadUrl("http://www.gmail.com");
-            }
-        });
+	}
 
-        AlertService service = new AlertService();
-        service.execute("https://ajax.googleapis.com/ajax/" +
-                "services/search/web?v=1.0&q={query}");
-
-    }
+	
 }

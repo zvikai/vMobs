@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+
+    <ImageView
+        android:id="@+id/alert_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:paddingRight="8dip"
+        android:paddingBottom="6dip"
+        android:contentDescription="Alert Severity" >
+        
+    </ImageView>
+
+    <TextView
+        android:id="@+id/alert_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/alert_icon"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textSize="20sp" />
+
+    <TextView
+         android:id="@+id/alert_description"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alert_label"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        
+        android:layout_toRightOf="@id/alert_icon"
+        android:textSize="12sp" />
+
+</RelativeLayout>
